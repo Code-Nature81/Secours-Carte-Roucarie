@@ -93,6 +93,11 @@ var marker2 = new mapboxgl.Marker({ color: 'red', rotation: 0, })
 .setPopup(new mapboxgl.Popup().setHTML("<h1>Balise 13 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img src='https://api.iconify.design/iconoir:pharmacy-cross-circle.svg?color=%23e60000'width='38'></h1><hr><h2>La Roucarié</h2><hr><br><h3>Long:2.16065 / Lat:44.08030<br><br></h3><a href='tel:+33643720271'><h2><img src='phone.svg' width='17;'>&nbsp Appel secours</a></h2>"))
 .addTo(map)
 
+var marker2 = new mapboxgl.Marker({ color: 'red', rotation: 0, })
+.setLngLat([2.17038, 44.08181])
+.setPopup(new mapboxgl.Popup().setHTML("<h1>Balise 10</h1><hr><h2>La libellule bleue</h2><hr><br><h3>Long:2.16065 / Lat:44.08030<br><br></h3><img src='Station10.jpg' width='187;'>"))
+.addTo(map)
+
 map.on('load', function () {
 map.addSource('route', {
 'type': 'geojson',
