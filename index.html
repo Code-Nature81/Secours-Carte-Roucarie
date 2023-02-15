@@ -9,12 +9,28 @@
 <style>
 body { margin: 0; padding: 0; }
 #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+#info {
+display: inline-block;
+position: relative;
+margin: 0px auto;
+width: 100%;
+padding: 12px;
+border: none;
+border-radius: 3px;
+font-size: 10px;
+text-align: left;
+color: #222;
+background: #ffffffd2;
+}
+
+
 </style>
 </head>
 <body>
 
 	
 <div id="map"></div>
+<pre id="info"></pre>
 
 
 <script>
@@ -26,6 +42,7 @@ center: [2.142752, 44.082275], // starting position
             
 zoom: 13.5 // starting zoom
 });
+
 
 
 var marker2 = new mapboxgl.Marker({ color: 'red', rotation: 0, })
@@ -93,10 +110,10 @@ var marker2 = new mapboxgl.Marker({ color: 'red', rotation: 0, })
 .setPopup(new mapboxgl.Popup().setHTML("<h1>Balise 13 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img src='https://api.iconify.design/iconoir:pharmacy-cross-circle.svg?color=%23e60000'width='38'></h1><hr><h2>La Roucarié</h2><hr><br><h3>Long:2.16065 / Lat:44.08030<br><br></h3><a href='tel:+33643720271'><h2><img src='phone.svg' width='17;'>&nbsp Appel secours</a></h2>"))
 .addTo(map)
 
-var marker2 = new mapboxgl.Marker({ color: 'red', rotation: 0, })
-.setLngLat([2.17038, 44.08181])
-.setPopup(new mapboxgl.Popup().setHTML("<h1>Balise 10</h1><hr><h2>La libellule bleue</h2><hr><br><h3>Long:2.16065 / Lat:44.08030<br><br></h3><a href='Station10G.jpg' target='_blank'><img src='Station10.JPG' width='180' /></a>"))
-.addTo(map)
+//var marker2 = new mapboxgl.Marker({ color: 'red', rotation: 0, })
+//.setLngLat([2.17038, 44.08181])
+//.setPopup(new mapboxgl.Popup().setHTML("<h1>Balise 10</h1><hr><h2>La libellule bleue</h2><hr><br><h3>Long:2.16065 / Lat:44.08030<br><br></h3><a href='Station10G.jpg' target='_blank'><img src='Station10.JPG' width='180' /></a>"))
+//.addTo(map)
 
 map.on('load', function () {
 map.addSource('route', {
@@ -871,23 +888,23 @@ trackUserLocation: true
 })
 );
 
+
+
 map.addControl(new mapboxgl.NavigationControl());7
 
-
-map.addLayer({
-'id': 'routt',
-'type': 'line',
-'source': 'routt',
-'layout': {
-'line-join': 'round',
-'line-cap': 'round'
-},
-'paint': {
-'line-color': '#CC0000',
-'line-width': 10
-}
+map.on('mousemove', function (e) {
+document.getElementById('info').innerHTML =
+// e.point is the x, y coordinates of the mousemove event relative
+// to the top-left corner of the map
+//JSON.stringify(e.point) +
+//'<br />' +
+// e.lngLat is the longitude, latitude geographical position of the event
+JSON.stringify(e.lngLat.wrap());
 });
- 
+
+
+
+
 
 </script>
 
