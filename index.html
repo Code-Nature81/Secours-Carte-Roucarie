@@ -8,32 +8,41 @@
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
 <style>
 body { margin: 0; padding: 0; }
-#map { position: absolute; top: 0; bottom: 0; width: 100%; }
-#info {
-display: inline-block;
-position: relative;
-margin: 0px auto;
-width: 100%;
-padding: 12px;
-border: none;
-border-radius: 3px;
-font-size: 10px;
-text-align: left;
-color: #222;
-background: #ffffffd2;
+#map { position: absolute; top: 0; bottom: 0; width: 100%; height: 100vh; }
+/*#menu{
+  position: absolute;
+  top:90vh;
+  left:50%;
+  transform: translate(-50%);
+  font-size: .7rem;
+  text-transform: capitalize;
+}*/
+
+.container h3{
+  z-index: 1;
+  position: absolute;
+  top: 93vh;
+  left: 35%;
+  font-size: 25px;
+  
 }
+
+
 
 
 </style>
 </head>
 <body>
 
-	
-<div id="map"></div>
-<pre id="info"></pre>
+<div class="container">
 
+  <h3 class="titre"><a href="https://www.codenature.fr/" style="text-decoration: none; color: rgb(14, 156, 16);"><img src='logodecoup.png'width='32'>Code Nature</a></h3>
+	
+    <div id="map"></div>
+</div>
 
 <script>
+  
 mapboxgl.accessToken = 'pk.eyJ1IjoiZ3ViaW5xIiwiYSI6ImNrbnlubnVwYjBsMjgyb3J4b3hqM2YwOGsifQ.KV-VZe4nIEMc7rhtHmM5BQ';
 var map = new mapboxgl.Map({
 container: 'map', // container id
@@ -41,6 +50,8 @@ style: 'mapbox://styles/mapbox/streets-v11',
 center: [2.142752, 44.082275], // starting position  
             
 zoom: 13.5 // starting zoom
+
+
 });
 
 
@@ -115,8 +126,11 @@ var marker2 = new mapboxgl.Marker({ color: 'red', rotation: 0, })
 //.setPopup(new mapboxgl.Popup().setHTML("<h1>Balise 10</h1><hr><h2>La libellule bleue</h2><hr><br><h3>Long:2.16065 / Lat:44.08030<br><br></h3><a href='Station10G.jpg' target='_blank'><img src='Station10.JPG' width='180' /></a>"))
 //.addTo(map)
 
+
+
 map.on('load', function () {
 map.addSource('route', {
+  
 'type': 'geojson',
 'data': {
 'type': 'Feature',
@@ -860,10 +874,12 @@ map.addSource('route', {
             2.159184,
             44.079651
           ]
+          
 ]
 }
 }
 });
+
 map.addLayer({
 'id': 'route',
 'type': 'line',
@@ -878,6 +894,8 @@ map.addLayer({
 }
 });
 });
+
+
 // Add geolocate control to the map.
 map.addControl(
 new mapboxgl.GeolocateControl({
@@ -890,17 +908,12 @@ trackUserLocation: true
 
 
 
+
+
+
 map.addControl(new mapboxgl.NavigationControl());7
 
-map.on('mousemove', function (e) {
-document.getElementById('info').innerHTML =
-// e.point is the x, y coordinates of the mousemove event relative
-// to the top-left corner of the map
-//JSON.stringify(e.point) +
-//'<br />' +
-// e.lngLat is the longitude, latitude geographical position of the event
-JSON.stringify(e.lngLat.wrap());
-});
+
 
 
 
